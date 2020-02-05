@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5085432442804262908}
   - component: {fileID: 5085432442804262911}
   m_Layer: 0
-  m_Name: PlaceableBlock
+  m_Name: SandBlock
   m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,10 +55,11 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 687a334485226f049b0ddd3c3cffe199, type: 2}
+  - {fileID: 2100000, guid: a220834099ccfde469d4491c1da1be1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

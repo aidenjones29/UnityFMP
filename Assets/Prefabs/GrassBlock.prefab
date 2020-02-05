@@ -10,8 +10,13 @@ PrefabInstance:
     - target: {fileID: 5085432442804262881, guid: 82ed2b5c6d0fc5240919296650253597,
         type: 3}
       propertyPath: m_Name
-      value: PlaceableBlock
+      value: GrassBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 5085432442804262908, guid: 82ed2b5c6d0fc5240919296650253597,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d78512c5b2bd18459f507e2f1e9de35, type: 2}
     - target: {fileID: 5085432442804262910, guid: 82ed2b5c6d0fc5240919296650253597,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,10 +72,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5085432442804262908, guid: 82ed2b5c6d0fc5240919296650253597,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 39b68a20ee3124b4fb7a470a0a632f82, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82ed2b5c6d0fc5240919296650253597, type: 3}

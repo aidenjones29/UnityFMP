@@ -13,7 +13,7 @@ public class CharMove : MonoBehaviour
     public GameObject player;
     public GameObject water;
     public float movementSpeed = 10.0f;
-    public GameObject[] cube;
+    public GameObject[] PlayerHand;
 
     private Vector3 moveDirection = Vector3.zero;
     private float x;
@@ -88,32 +88,32 @@ public class CharMove : MonoBehaviour
                 if (MyNormal == hit.transform.up)
                 {
                     pos.y += 1.5f;
-                    Instantiate(cube[skin], pos, rot);
+                    Instantiate(PlayerHand[skin], pos, rot);
                 }
                 else if (MyNormal == -hit.transform.up)
                 {
                     pos.y -= 1.5f;
-                    Instantiate(cube[skin], pos, rot);
+                    Instantiate(PlayerHand[skin], pos, rot);
                 }
                 else if (MyNormal == hit.transform.right)
                 {
                     pos.x += 1.5f;
-                    Instantiate(cube[skin], pos, rot);
+                    Instantiate(PlayerHand[skin], pos, rot);
                 }
                 else if (MyNormal == -hit.transform.right)
                 {
                     pos.x -= 1.5f;
-                    Instantiate(cube[skin], pos, rot);
+                    Instantiate(PlayerHand[skin], pos, rot);
                 }
                 else if (MyNormal == hit.transform.forward)
                 {
                     pos.z += 1.5f;
-                    Instantiate(cube[skin], pos, rot);
+                    Instantiate(PlayerHand[skin], pos, rot);
                 }
                 else if (MyNormal == -hit.transform.forward)
                 {
                     pos.z -= 1.5f;
-                    Instantiate(cube[skin], pos, rot);
+                    Instantiate(PlayerHand[skin], pos, rot);
                 }
             } 
 
@@ -132,17 +132,21 @@ public class CharMove : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             skin = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             skin = 1;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             skin = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            skin = 3;
         }
     }
 }

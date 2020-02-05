@@ -11,7 +11,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 99012eb468d9a224080aa85319d936c3, type: 2}
+      objectReference: {fileID: 2100000, guid: 7bd7fa67a8872c54ea23d8553ab9c871, type: 2}
     - target: {fileID: 2983471317289709030, guid: 82f0585f0e057e84eb1b4190d4b839b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 2983471317289709049, guid: 82f0585f0e057e84eb1b4190d4b839b0,
         type: 3}
       propertyPath: m_Name
-      value: stone
+      value: stone 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82f0585f0e057e84eb1b4190d4b839b0, type: 3}
