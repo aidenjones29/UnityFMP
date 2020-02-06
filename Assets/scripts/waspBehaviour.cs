@@ -72,7 +72,7 @@ public class waspBehaviour : MonoBehaviour
 
             if (animalController.isGrounded)
             {
-                moveDirection = transform.TransformDirection(0.0f, 0.0f, 5.0f);
+                moveDirection = transform.TransformDirection(-5.0f, 0.0f, 0.0f);
                 moveDirection = moveDirection * movementSpeed;
             }
 
@@ -85,7 +85,7 @@ public class waspBehaviour : MonoBehaviour
 
             if (dist >= 3)
             {
-                moveDirection = transform.TransformDirection(0.0f, 0.0f, 5.0f);
+                moveDirection = transform.TransformDirection(-5.0f, 0.0f, 0.0f);
                 moveDirection = moveDirection * movementSpeed;
                 moveDirection.y -= 15f * Time.deltaTime;
                 animalController.Move(moveDirection * Time.deltaTime);

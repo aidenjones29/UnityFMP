@@ -14,7 +14,10 @@ public class CharMove : MonoBehaviour
     public GameObject water;
     public float movementSpeed = 10.0f;
     public GameObject[] PlayerHand;
+    public GameObject holdingBlock;
+    public Material[] holdingSkins;
 
+    private Renderer blockrend;
     private Vector3 moveDirection = Vector3.zero;
     private float x;
     private float y;
@@ -23,9 +26,11 @@ public class CharMove : MonoBehaviour
     public SimpleHealthBar healthBar;
     private int maxHp = 100;
     private int currHp;
+    private bool holdingSword = false;
 
     void Start()
     {
+        blockrend = holdingBlock.GetComponent<Renderer>();
         GlobalVariables.currentHP = 100;
         PlayerController = GetComponent<CharacterController>();
         Cursor.visible = false;
@@ -74,7 +79,7 @@ public class CharMove : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && holdingSword == false)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -132,21 +137,30 @@ public class CharMove : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            skin = 0;
+            holdingSword = true;
+            blockrend.material = holdingSkins[skin];
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            skin = 1;
+            skin = 0; holdingSword = false;
+            blockrend.material = holdingSkins[skin];
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            skin = 2;
+            skin = 1; holdingSword = false;
+            blockrend.material = holdingSkins[skin];
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            skin = 3;
+            skin = 2; holdingSword = false;
+            blockrend.material = holdingSkins[skin];
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            skin = 3; holdingSword = false;
+            blockrend.material = holdingSkins[skin];
         }
     }
 }
