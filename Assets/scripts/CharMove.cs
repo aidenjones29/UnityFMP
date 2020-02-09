@@ -13,8 +13,11 @@ public class CharMove : MonoBehaviour
     public GameObject player;
     public GameObject water;
     public float movementSpeed = 10.0f;
-    public GameObject[] PlayerHand;
     public GameObject holdingBlock;
+    public GameObject armsBlock;
+    public GameObject armsSword;
+    public SimpleHealthBar healthBar;
+    public GameObject[] PlayerHand;
     public Material[] holdingSkins;
 
     private Renderer blockrend;
@@ -23,10 +26,12 @@ public class CharMove : MonoBehaviour
     private float y;
     private Vector3 rotateValue;
     private int skin = 0;
-    public SimpleHealthBar healthBar;
     private int maxHp = 100;
     private int currHp;
-    private bool holdingSword = false;
+    private bool holdingSword = true;
+    private float swingTime = 0.2f;
+    private bool swinging = false;
+    private Quaternion startRotSword;
 
     void Start()
     {
@@ -35,6 +40,7 @@ public class CharMove : MonoBehaviour
         PlayerController = GetComponent<CharacterController>();
         Cursor.visible = false;
         healthBar.UpdateBar(currHp, maxHp);
+        startRotSword = armsSword.transform.rotation;
     }
 
     void Update()
@@ -79,50 +85,75 @@ public class CharMove : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(0) && holdingSword == false)
+        if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 15))
+            if(holdingSword == false)
             {
-                Vector3 MyNormal = hit.normal;
-                MyNormal = hit.transform.TransformDirection(MyNormal);
-                Vector3 pos = new Vector3(hit.transform.position.x, hit.transform.position.y, hit.transform.position.z);
-                Quaternion rot = hit.transform.rotation;
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, 15))
+                {
+                    Vector3 MyNormal = hit.normal;
+                    MyNormal = hit.transform.TransformDirection(MyNormal);
+                    Vector3 pos = new Vector3(hit.transform.position.x, hit.transform.position.y, hit.transform.position.z);
+                    Quaternion rot = hit.transform.rotation;
 
-                if (MyNormal == hit.transform.up)
-                {
-                    pos.y += 1.5f;
-                    Instantiate(PlayerHand[skin], pos, rot);
-                }
-                else if (MyNormal == -hit.transform.up)
-                {
-                    pos.y -= 1.5f;
-                    Instantiate(PlayerHand[skin], pos, rot);
-                }
-                else if (MyNormal == hit.transform.right)
-                {
-                    pos.x += 1.5f;
-                    Instantiate(PlayerHand[skin], pos, rot);
-                }
-                else if (MyNormal == -hit.transform.right)
-                {
-                    pos.x -= 1.5f;
-                    Instantiate(PlayerHand[skin], pos, rot);
-                }
-                else if (MyNormal == hit.transform.forward)
-                {
-                    pos.z += 1.5f;
-                    Instantiate(PlayerHand[skin], pos, rot);
-                }
-                else if (MyNormal == -hit.transform.forward)
-                {
-                    pos.z -= 1.5f;
-                    Instantiate(PlayerHand[skin], pos, rot);
-                }
-            } 
+                    if (MyNormal == hit.transform.up)
+                    {
+                        pos.y += 1.5f;
+                        Instantiate(PlayerHand[skin], pos, rot);
+                    }
+                    else if (MyNormal == -hit.transform.up)
+                    {
+                        pos.y -= 1.5f;
+                        Instantiate(PlayerHand[skin], pos, rot);
+                    }
+                    else if (MyNormal == hit.transform.right)
+                    {
+                        pos.x += 1.5f;
+                        Instantiate(PlayerHand[skin], pos, rot);
+                    }
+                    else if (MyNormal == -hit.transform.right)
+                    {
+                        pos.x -= 1.5f;
+                        Instantiate(PlayerHand[skin], pos, rot);
+                    }
+                    else if (MyNormal == hit.transform.forward)
+                    {
+                        pos.z += 1.5f;
+                        Instantiate(PlayerHand[skin], pos, rot);
+                    }
+                    else if (MyNormal == -hit.transform.forward)
+                    {
+                        pos.z -= 1.5f;
+                        Instantiate(PlayerHand[skin], pos, rot);
+                    }
+                } 
 
+            }
+            else
+            {
+                swinging = true;
+            }
         }
+
+        if(swinging == true)
+        {
+            if(swingTime >= 0.0f)
+            {
+                swingTime -= Time.fixedDeltaTime;
+                Vector3 rot = new Vector3( 5.0f, 0.0f, 0.0f );
+                armsSword.transform.Rotate(rot, Space.Self);
+            }
+            else
+            {
+                swingTime = 0.2f;
+                swinging = false;
+                armsSword.transform.localRotation = startRotSword;
+                armsSword.transform.localPosition = new Vector3(0.8f, 0.9f, 1.0f);
+            }
+        }
+
         if(Input.GetMouseButtonDown(1))
         {
             RaycastHit hit;
@@ -140,27 +171,37 @@ public class CharMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             holdingSword = true;
-            blockrend.material = holdingSkins[skin];
+            armsBlock.transform.localPosition = new Vector3(0.0f, 1.5f, -3.0f);
+            armsSword.transform.localPosition = new Vector3(0.8f, 0.9f, 1.0f);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             skin = 0; holdingSword = false;
             blockrend.material = holdingSkins[skin];
+            armsBlock.transform.localPosition = new Vector3(0.0f, 1.5f, 0.0f);
+            armsSword.transform.localPosition = new Vector3(0.8f, 0.9f, -2.0f);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             skin = 1; holdingSword = false;
             blockrend.material = holdingSkins[skin];
+            armsBlock.transform.localPosition = new Vector3(0.0f, 1.5f, 0.0f);
+            armsSword.transform.localPosition = new Vector3(0.8f, 0.9f, -2.0f);
+
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             skin = 2; holdingSword = false;
             blockrend.material = holdingSkins[skin];
+            armsBlock.transform.localPosition = new Vector3(0.0f, 1.5f, 0.0f);
+            armsSword.transform.localPosition = new Vector3(0.8f, 0.9f, -2.0f);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             skin = 3; holdingSword = false;
             blockrend.material = holdingSkins[skin];
+            armsBlock.transform.localPosition = new Vector3(0.0f, 1.5f, 0.0f);
+            armsSword.transform.localPosition = new Vector3(0.8f, 0.9f, -2.0f);
         }
     }
 }
