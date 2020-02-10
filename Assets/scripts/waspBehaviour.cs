@@ -14,8 +14,8 @@ public class waspBehaviour : MonoBehaviour
     SkinnedMeshRenderer waspRend;
     private Animator anim;
 
-    private float attackTimerMax = 2.0f;
-    private float CurrentAttackTimer = 2.0f;
+    private float attackTimerMax = 1.5f;
+    private float CurrentAttackTimer = 1.0f;
     private int CurrentHP;
     private int AttackDamage = 5;
     private Quaternion currRot;

@@ -5,6 +5,7 @@ public static class GlobalVariables
 {
     public static string[] position = new string[2];
     public static int currentHP;
+    public static int kills;
 }
 
 public class CharMove : MonoBehaviour
