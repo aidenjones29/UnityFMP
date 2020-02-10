@@ -12,12 +12,13 @@ public class waspBehaviour : MonoBehaviour
     private GameObject player;
     private bool followingPlayer = false;
     SkinnedMeshRenderer waspRend;
-    private Animation anim;
-    public int CurrentHP;
+    private Animator anim;
 
     private float attackTimerMax = 2.0f;
     private float CurrentAttackTimer = 2.0f;
+    private int CurrentHP;
     private int AttackDamage = 5;
+    private Quaternion currRot;
 
 
     void Start()
@@ -27,78 +28,91 @@ public class waspBehaviour : MonoBehaviour
         player = GameObject.Find("Player");
         timer = CountdownTime;
         animalController = GetComponent<CharacterController>();
-
+        anim = GetComponent<Animator>();
         transform.Rotate(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
-        if (gameObject.name == "Bat")
-        {
-            anim = gameObject.GetComponent<Animation>();
-        }
     }
     // Update is called once per frame
     void Update()
     {
-        float dist = Vector3.Distance(transform.position, player.transform.position);
-
-        if (dist <= 60)
+        if (CurrentHP <= 0.0f)
         {
-            waspRend.enabled = true;
+            anim.Play("Death");
+            Destroy(gameObject, 1.5f);
         }
         else
         {
-            waspRend.enabled = false;
-        }
+            float dist = Vector3.Distance(transform.position, player.transform.position);
 
-        if (dist <= 15)
-        {
-            followingPlayer = true;
-        }
-        else if (dist >= 20)
-        {
-            followingPlayer = false;
-            //transform.rotation.Set(0.0f, 0.0f, 0.0f, 0.0f);
-        }
-
-        if (followingPlayer == false)
-        {
-            if (timer >= 0.0f)
+            if (dist <= 60)
             {
-                timer -= Time.deltaTime;
+                waspRend.enabled = true;
             }
             else
             {
-                transform.Rotate(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
-                timer = CountdownTime;
+                waspRend.enabled = false;
             }
 
-            if (animalController.isGrounded)
+            if (dist <= 15)
             {
-                moveDirection = transform.TransformDirection(-5.0f, 0.0f, 0.0f);
-                moveDirection = moveDirection * movementSpeed;
+                followingPlayer = true;
+            }
+            else if (dist >= 20)
+            {
+                followingPlayer = false;
+                //transform.rotation.Set(0.0f, 0.0f, 0.0f, 0.0f);
             }
 
-            moveDirection.y -= 15f * Time.deltaTime;
-            animalController.Move(moveDirection * Time.deltaTime);
-        }
-        else
-        {
-            transform.LookAt(player.transform.position);
-
-            if (dist >= 3)
+            if (followingPlayer == false)
             {
-                moveDirection = transform.TransformDirection(-5.0f, 0.0f, 0.0f);
-                moveDirection = moveDirection * movementSpeed;
+                if (timer >= 0.0f)
+                {
+                    timer -= Time.deltaTime;
+                }
+                else
+                {
+                    transform.Rotate(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
+                    timer = CountdownTime;
+                }
+
+                if (animalController.isGrounded)
+                {
+                    moveDirection = transform.TransformDirection(-5.0f, 0.0f, 0.0f);
+                    moveDirection = moveDirection * movementSpeed;
+                }
+
                 moveDirection.y -= 15f * Time.deltaTime;
                 animalController.Move(moveDirection * Time.deltaTime);
             }
             else
             {
-                CurrentAttackTimer -= Time.deltaTime;
-                if(CurrentAttackTimer <= 0)
+                transform.LookAt(player.transform.position);
+                currRot = transform.rotation;
+                currRot *= Quaternion.Euler(0, 90, 0);
+                transform.rotation = currRot;
+
+                if (dist >= 3)
                 {
-                    CurrentAttackTimer = attackTimerMax;
-                    GlobalVariables.currentHP -= AttackDamage;
+                    moveDirection = transform.TransformDirection(-5.0f, 0.0f, 0.0f);
+                    moveDirection = moveDirection * movementSpeed;
+                    moveDirection.y -= 15f * Time.deltaTime;
+                    animalController.Move(moveDirection * Time.deltaTime);
+                }
+                else
+                {
+                    CurrentAttackTimer -= Time.deltaTime;
+                    if(CurrentAttackTimer <= 0)
+                    {
+                        CurrentAttackTimer = attackTimerMax;
+                        GlobalVariables.currentHP -= AttackDamage;
+                        anim.Play("attack");
+                    }
                 }
             }
         }
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        CurrentHP -= damage;
     }
 }

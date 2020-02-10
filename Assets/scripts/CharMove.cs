@@ -29,9 +29,10 @@ public class CharMove : MonoBehaviour
     private int maxHp = 100;
     private int currHp;
     private bool holdingSword = true;
-    private float swingTime = 0.2f;
+    private float swingTime = 0.15f;
     private bool swinging = false;
     private Quaternion startRotSword;
+    public int swordDamage = 25;
 
     void Start()
     {
@@ -147,10 +148,20 @@ public class CharMove : MonoBehaviour
             }
             else
             {
-                swingTime = 0.2f;
+                swingTime = 0.15f;
                 swinging = false;
                 armsSword.transform.localRotation = startRotSword;
                 armsSword.transform.localPosition = new Vector3(0.8f, 0.9f, 1.0f);
+
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, 10.0f))
+                {
+                    if (hit.collider.gameObject.tag == "Mob")
+                    {
+                        hit.collider.gameObject.SendMessage("ApplyDamage", swordDamage);
+                    }
+                }
             }
         }
 

@@ -20,8 +20,8 @@ public class PerlinNoise : MonoBehaviour
     public Image outputImage;
     public Material sandMaterial;
     public Material dirtMaterial;
-    public GameObject SheepInst;
-    public GameObject pugInst;
+    public GameObject ZebraObj;
+    public GameObject CowObj;
     public GameObject BatInst;
     public GameObject waspInst;
     public GameObject villageHouse1;
@@ -167,8 +167,6 @@ public class PerlinNoise : MonoBehaviour
             makeBiomes();
             placeTrees();
             done = true;
-
-            lastPosition[0] = int.Parse(GlobalVariables.position[0]); lastPosition[1] = int.Parse(GlobalVariables.position[1]);
         }
 
         renderSquare();
@@ -253,12 +251,12 @@ public class PerlinNoise : MonoBehaviour
                     if (randTree == 996 && randMob <= 500)
                     {
                         position.y -= 2.0f;
-                        Instantiate(SheepInst, position, rotation);
+                        Instantiate(ZebraObj, position, rotation);
                     }
                     else if (randTree == 995 && randMob <= 500)
                     {
                         position.y -= 2.0f;
-                        Instantiate(pugInst, position, rotation);
+                        Instantiate(CowObj, position, rotation);
                     }
                     else if(randTree == 994 && randMob <= 500)
                     {

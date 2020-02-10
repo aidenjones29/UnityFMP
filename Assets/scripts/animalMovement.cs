@@ -11,74 +11,90 @@ public class animalMovement : MonoBehaviour
     private float timer;
     private GameObject player;
     private bool followingPlayer = false;
-    private Animation anim;
+    private Animator anim;
+    private int CurrentHP = 100;
+    private SkinnedMeshRenderer rend;
+    private Quaternion currRot;
 
     void Start()
     {
+        rend = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
         player = GameObject.Find("Player");
         timer = CountdownTime;
+        anim = GetComponent<Animator>();
         animalController = GetComponent<CharacterController>();
         transform.Rotate(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
-        if (gameObject.name == "Bat")
-        {
-            anim = gameObject.GetComponent<Animation>();
-        }
     }
     // Update is called once per frame
     void Update()
     {
         float dist = Vector3.Distance(transform.position, player.transform.position);
-
-        if(dist <= 60)
+        if (CurrentHP <= 0.0f)
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
+            anim.Play("Death");
+            Destroy(gameObject, 1.5f);
         }
         else
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
-        }
-
-        if (dist <= 5)
-        {
-            followingPlayer = true;
-        }
-        else if (dist >= 20)
-        {
-            followingPlayer = false;
-            transform.rotation.Set(0.0f, 0.0f, 0.0f, 0.0f);
-        }
-
-        if (followingPlayer == false)
-        {
-            if(timer >= 0.0f)
+            if (dist <= 60)
             {
-                timer -= Time.deltaTime;
+                rend.enabled = true;
             }
             else
             {
-                transform.Rotate(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
-                timer = CountdownTime;
+                rend.enabled = false;
             }
 
-            if (animalController.isGrounded)
+            if (dist <= 5)
             {
-                moveDirection = transform.TransformDirection(0.0f, 0.0f, 1.0f);
-                moveDirection = moveDirection * movementSpeed;
+                followingPlayer = true;
+            }
+            else if (dist >= 20)
+            {
+                followingPlayer = false;
+                transform.rotation.Set(0.0f, 0.0f, 0.0f, 0.0f);
             }
 
-            moveDirection.y -= 15f * Time.deltaTime;
-            animalController.Move(moveDirection * Time.deltaTime);
-        }
-        else
-        {
-            transform.LookAt(player.transform.position);
-
-            if(dist >= 3)
+            if (followingPlayer == false)
             {
-                moveDirection = transform.TransformDirection(0.0f, 0.0f, 1.0f);
+                if(timer >= 0.0f)
+                {
+                    timer -= Time.deltaTime;
+                }
+                else
+                {
+                    transform.Rotate(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
+                    timer = CountdownTime;
+                }
+
+                if (animalController.isGrounded)
+                {
+                    moveDirection = transform.TransformDirection(0.0f, 0.0f, 1.0f);
+                    moveDirection = moveDirection * movementSpeed;
+                }
+
                 moveDirection.y -= 15f * Time.deltaTime;
                 animalController.Move(moveDirection * Time.deltaTime);
             }
+            else
+            {
+                transform.LookAt(player.transform.position);
+                currRot = transform.rotation;
+                currRot.x = 0; currRot.z = 0;
+                transform.rotation = currRot;
+
+                if (dist >= 3)
+                {
+                    moveDirection = transform.TransformDirection(0.0f, 0.0f, 1.0f);
+                    moveDirection.y -= 15f * Time.deltaTime;
+                    animalController.Move(moveDirection * Time.deltaTime);
+                }
+            }
         }
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        CurrentHP -= damage;
     }
 }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Destructable
+  - Mob
+  - Friendly
   layers:
   - Default
   - TransparentFX

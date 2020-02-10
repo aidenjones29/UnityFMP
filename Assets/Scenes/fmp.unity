@@ -662,6 +662,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 687a334485226f049b0ddd3c3cffe199, type: 2}
   - {fileID: 2100000, guid: 54b789cf457df0045b7e3187da48b8d8, type: 2}
   - {fileID: 2100000, guid: a67ba646c518abd4caceb1a6177d04fc, type: 2}
+  swordDamage: 25
 --- !u!136 &859583810
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -731,7 +732,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859583808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.7, y: 47.09, z: 9.899999}
+  m_LocalPosition: {x: 42.7, y: 25.1, z: 29.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1081272293}
@@ -971,9 +972,9 @@ MonoBehaviour:
   outputImage: {fileID: 1369496066}
   sandMaterial: {fileID: 2100000, guid: 687a334485226f049b0ddd3c3cffe199, type: 2}
   dirtMaterial: {fileID: 2100000, guid: 7e469a3eccbcbc342a08bdd544127246, type: 2}
-  SheepInst: {fileID: 5352235821388691782, guid: 99763381b1a600b4b96810aff1307263,
+  ZebraObj: {fileID: 3276243524273553326, guid: 32b1e3800b4302b4fb999748289ee9a7,
     type: 3}
-  pugInst: {fileID: 4109557506615083298, guid: 4de9912114543824c81e82db134553d8, type: 3}
+  CowObj: {fileID: 9103006925983602123, guid: 5a14baf453687564b9623df9da93a12e, type: 3}
   BatInst: {fileID: 3378139664622961017, guid: d2d4d13ad07e85647abacd1203a4ae4a, type: 3}
   waspInst: {fileID: 9151680749256779900, guid: 312937de32f1a774381eef1a5b94229c,
     type: 3}
