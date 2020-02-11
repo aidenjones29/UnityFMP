@@ -47,6 +47,11 @@ public class PerlinNoise : MonoBehaviour
     private const int halfRenderSize = renderSize / 2;
     private int[] lastPosition = new int [2];
 
+    private int chunkSize = 10;
+    private int[] lastChunk = new int[2];
+    private int[] currentChunk = new int[2];
+    private int renderChunkSize = 10;
+
     void Start()
     {
         xOrg = Random.Range(0, 100);
@@ -282,50 +287,110 @@ public class PerlinNoise : MonoBehaviour
 
         if (int.TryParse(GlobalVariables.position[0], out temp))
         {
-            int playerMinX = int.Parse(GlobalVariables.position[0]) - halfRenderSize;
-            int playerMinZ = int.Parse(GlobalVariables.position[1]) - halfRenderSize;
+            currentChunk[0] = int.Parse(GlobalVariables.position[0]) / chunkSize;
+            currentChunk[1] = int.Parse(GlobalVariables.position[1]) / chunkSize;
+        }
 
-            for (int y = 0; y < (renderSize + 20); y++)
+        if (lastChunk[0] != currentChunk[0] || lastChunk[1] != currentChunk[1])
+        {
+            for (int yRend = (currentChunk[0] - (renderChunkSize / 2)); yRend < (currentChunk[0] + (renderChunkSize / 2)); yRend++)
             {
-                for (int x = 0; x < (renderSize + 20); x++)
+                for (int xRend = (currentChunk[1] - (renderChunkSize / 2)); xRend < (currentChunk[1] + (renderChunkSize / 2)); xRend++)
                 {
-                    int x1 = (playerMinX - 10) + x;
-                    int y1 = (playerMinZ - 10) + y;
-
-                    if (x1 >= 0 && x1 < pixRes && y1 >= 0 && y1 < pixRes)
+                    if(xRend >= 0 && xRend < (pixRes / 10) && yRend >= 0 && yRend <= (pixRes / 10))
                     {
-                        if (instanciated[y1][x1] && instanciated[y1][x1].GetComponent<Renderer>().enabled == true)
-                        {
-                            instanciated[y1][x1].GetComponent<Renderer>().enabled = false;
-                        }
-                        if (treeInstanciated[y1][x1] && treeInstanciated[y1][x1].activeInHierarchy == true)
-                        {
-                            treeInstanciated[y1][x1].SetActive(false);
-                        }
+                        renderChunk(yRend, xRend);
                     }
                 }
             }
+            lastChunk[0] = currentChunk[0]; lastChunk[1] = currentChunk[1];
+        }
+        //}
+        //int temp;
+        //
+        //if (int.TryParse(GlobalVariables.position[0], out temp))
+        //{
+        //    int playerMinX = int.Parse(GlobalVariables.position[0]) - halfRenderSize;
+        //    int playerMinZ = int.Parse(GlobalVariables.position[1]) - halfRenderSize;
+        //
+        //    for (int y = 0; y < (renderSize + 20); y++)
+        //    {
+        //        for (int x = 0; x < (renderSize + 20); x++)
+        //        {
+        //            int x1 = (playerMinX - 10) + x;
+        //            int y1 = (playerMinZ - 10) + y;
+        //
+        //            if (x1 >= 0 && x1 < pixRes && y1 >= 0 && y1 < pixRes)
+        //            {
+        //                if (instanciated[y1][x1] && instanciated[y1][x1].GetComponent<Renderer>().enabled == true)
+        //                {
+        //                    instanciated[y1][x1].GetComponent<Renderer>().enabled = false;
+        //                }
+        //                if (treeInstanciated[y1][x1] && treeInstanciated[y1][x1].activeInHierarchy == true)
+        //                {
+        //                    treeInstanciated[y1][x1].SetActive(false);
+        //                }
+        //            }
+        //        }
+        //    }
+        //
+        //    for (int y = 0; y < renderSize; y++)
+        //    {
+        //        for (int x = 0; x < renderSize; x++)
+        //        {
+        //            int x1 = playerMinX + x;
+        //            int y1 = playerMinZ + y;
+        //    
+        //            if (x1 >= 0 && x1 < pixRes && y1 >= 0 && y1 < pixRes)
+        //            {
+        //                if (instanciated[y1][x1] && instanciated[y1][x1].GetComponent<Renderer>().enabled == false)
+        //                {
+        //                    instanciated[y1][x1].GetComponent<Renderer>().enabled = true;
+        //                }
+        //                if (treeInstanciated[y1][x1] && treeInstanciated[y1][x1].activeInHierarchy == false)
+        //                {
+        //                    treeInstanciated[y1][x1].SetActive(true);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+    }
 
-            for (int y = 0; y < renderSize; y++)
+    void renderChunk(int x, int y)
+    {
+        for (int yRend = 0; yRend < chunkSize; yRend++)
+        {
+            for (int xRend = 0; xRend < chunkSize; xRend++)
             {
-                for (int x = 0; x < renderSize; x++)
-                {
-                    int x1 = playerMinX + x;
-                    int y1 = playerMinZ + y;
+               if (instanciated[y * 10 + yRend][x * 10 + xRend] && instanciated[y * 10 + yRend][x * 10 + xRend].GetComponent<Renderer>().enabled == false)
+               {
+                   instanciated[y * 10 + yRend][x * 10 + xRend].GetComponent<Renderer>().enabled = true;
+               }
+               if (treeInstanciated[y * 10 + yRend][x * 10 + xRend] && treeInstanciated[y * 10 + yRend][x * 10 + xRend].activeInHierarchy == false)
+               {
+                   treeInstanciated[y * 10 + yRend][x * 10 + xRend].SetActive(true);
+               }
+            }
+        }
+    }
 
-                    if (x1 >= 0 && x1 < pixRes && y1 >= 0 && y1 < pixRes)
-                    {
-                        if (instanciated[y1][x1] && instanciated[y1][x1].GetComponent<Renderer>().enabled == false)
-                        {
-                            instanciated[y1][x1].GetComponent<Renderer>().enabled = true;
-                        }
-                        if (treeInstanciated[y1][x1] && treeInstanciated[y1][x1].activeInHierarchy == false)
-                        {
-                            treeInstanciated[y1][x1].SetActive(true);
-                        }
-                    }
+    void unrenderChunk(int x, int y)
+    {
+        for (int yRend = 0; yRend < chunkSize; yRend++)
+        {
+            for (int xRend = 0; xRend < chunkSize; xRend++)
+            {
+                if (instanciated[y * 10 + yRend][x * 10 + xRend] && instanciated[y * 10 + yRend][x * 10 + xRend].GetComponent<Renderer>().enabled == true)
+                {
+                    instanciated[y * 10 + yRend][x * 10 + xRend].GetComponent<Renderer>().enabled = false;
+                }
+                if (treeInstanciated[y * 10 + yRend][x * 10 + xRend] && treeInstanciated[y * 10 + yRend][x * 10 + xRend].activeInHierarchy == true)
+                {
+                    treeInstanciated[y * 10 + yRend][x * 10 + xRend].SetActive(false);
                 }
             }
         }
     }
+
 }
