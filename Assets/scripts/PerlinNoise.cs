@@ -288,26 +288,27 @@ public class PerlinNoise : MonoBehaviour
             currentChunk[0] = int.Parse(GlobalVariables.position[0]) / chunkSize;
             currentChunk[1] = int.Parse(GlobalVariables.position[1]) / chunkSize;
 
-            if (lastChunk[0] > currentChunk[0])
-            {
-                unrenderChunk(currentChunk[1], currentChunk[0] - (renderChunkSize / 2));
-            }
-            else if (lastChunk[0] < currentChunk[0])
-            {
-                unrenderChunk(currentChunk[1], currentChunk[0] + (renderChunkSize / 2));
-            }
+            //if (lastChunk[0] > currentChunk[0])
+            //{
+            //    unrenderChunk(currentChunk[1], currentChunk[0] - (renderChunkSize / 2));
+            //}
+            //else if (lastChunk[0] < currentChunk[0])
+            //{
+            //    unrenderChunk(currentChunk[1], currentChunk[0] + (renderChunkSize / 2));
+            //}
 
-            if (lastChunk[1] > currentChunk[1])
-            {
-                unrenderChunk(currentChunk[1] - (renderChunkSize / 2), currentChunk[0]);
-            }
-            else if (lastChunk[1] < currentChunk[1])
-            {
-                unrenderChunk(currentChunk[1] + (renderChunkSize / 2), currentChunk[0]);
-            }
+            //if (lastChunk[1] > currentChunk[1])
+            //{
+            //    unrenderChunk(currentChunk[1] - (renderChunkSize / 2), currentChunk[0]);
+            //}
+            //else if (lastChunk[1] < currentChunk[1])
+            //{
+            //    unrenderChunk(currentChunk[1] + (renderChunkSize / 2), currentChunk[0]);
+            //}
 
             if (lastChunk[0] != currentChunk[0] || lastChunk[1] != currentChunk[1])
             {
+
                 for (int yRend = (currentChunk[0] - (renderChunkSize / 2)); yRend < (currentChunk[0] + (renderChunkSize / 2)); yRend++)
                 {
                     for (int xRend = (currentChunk[1] - (renderChunkSize / 2)); xRend < (currentChunk[1] + (renderChunkSize / 2)); xRend++)
