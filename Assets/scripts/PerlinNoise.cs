@@ -43,10 +43,10 @@ public class PerlinNoise : MonoBehaviour
     private Color[] pix;
     private Renderer rend;
 
-    private int chunkSize = 10;
+    private int chunkSize = 20;
     private int[] lastChunk = new int[2];
     private int[] currentChunk = new int[2];
-    private int renderChunkSize = 4;
+    private int renderChunkSize = 6;
 
     void Start()
     {
