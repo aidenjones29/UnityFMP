@@ -14,8 +14,6 @@ public class PerlinNoise : MonoBehaviour
     public GameObject treeInstanciate;
     public GameObject deadTreeInst;
     public GameObject cactusInstanciate;
-    public GameObject[][] instanciated;
-    public GameObject[][] treeInstanciated;
     public GameObject grassModel;
     public GameObject deadGrassModel;
     public Image outputImage;
@@ -25,9 +23,12 @@ public class PerlinNoise : MonoBehaviour
     public GameObject CowObj;
     public GameObject BatInst;
     public GameObject waspInst;
+    public GameObject snakeInst;
     public GameObject villageHouse1;
     public GameObject firepit;
 
+    private GameObject[][] instanciated;
+    private GameObject[][] treeInstanciated;
     private bool done = false;
     private bool playerSet = false;
     private float xOrg;
@@ -215,7 +216,7 @@ public class PerlinNoise : MonoBehaviour
         {
             for (int x2 = 0; x2 < pixRes; x2++)
             {
-                if(instanciated[(int)y2][(int)x2])
+                if (instanciated[(int)y2][(int)x2])
                 {
                     Vector3 position = instanciated[(int)y2][(int)x2].transform.position;
                     randTree = Random.Range(0, 1000);
@@ -242,7 +243,7 @@ public class PerlinNoise : MonoBehaviour
                             treeInstanciated[y2][x2].SetActive(false);
                         }
                     }
-                    else if(randTree < 100)
+                    else if (randTree < 100)
                     {
                         if (blockType[(int)y2][(int)x2] == eBlocks.Grass)
                         {
@@ -268,7 +269,7 @@ public class PerlinNoise : MonoBehaviour
                         position.y -= 2.0f;
                         Instantiate(CowObj, position, rotation);
                     }
-                    else if(randTree == 994 && randMob <= 500)
+                    else if (randTree == 994 && randMob <= 500)
                     {
                         position.y += 20.0f;
                         Instantiate(BatInst, position, rotation);
@@ -280,6 +281,14 @@ public class PerlinNoise : MonoBehaviour
                         Instantiate(waspInst, position, rotation);
                         position.x -= 8;
                         Instantiate(waspInst, position, rotation);
+                    }
+                    else if (randTree == 992 && randMob <= 250)
+                    {
+                        if (blockType[(int)y2][(int)x2] == eBlocks.Dirt || blockType[(int)y2][(int)x2] == eBlocks.Sand)
+                        {
+                            position.y -= 2.0f;
+                            Instantiate(snakeInst, position, rotation);
+                        }
                     }
                 }
             }
@@ -301,7 +310,7 @@ public class PerlinNoise : MonoBehaviour
                 {
                     for (int xRend = (currentChunk[1] - (renderChunkSize / 2) - 1); xRend < (currentChunk[1] + (renderChunkSize / 2) + 1); xRend++)
                     {
-                        if (xRend >= 0 && xRend < (pixRes / 10) && yRend >= 0 && yRend <= (pixRes / 10))
+                        if (xRend >= 0 && xRend < (pixRes / chunkSize) && yRend >= 0 && yRend <= (pixRes / chunkSize))
                         {
                             unrenderChunk(yRend, xRend);
                         }
@@ -312,7 +321,7 @@ public class PerlinNoise : MonoBehaviour
                 {
                     for (int xRend = (currentChunk[1] - (renderChunkSize / 2)); xRend < (currentChunk[1] + (renderChunkSize / 2)); xRend++)
                     {
-                        if(xRend >= 0 && xRend < (pixRes / 10) && yRend >= 0 && yRend <= (pixRes / 10))
+                        if(xRend >= 0 && xRend < (pixRes / chunkSize) && yRend >= 0 && yRend <= (pixRes / chunkSize))
                         {
                             renderChunk(yRend, xRend);
                         }

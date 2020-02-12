@@ -1016,6 +1016,8 @@ MonoBehaviour:
   BatInst: {fileID: 3378139664622961017, guid: d2d4d13ad07e85647abacd1203a4ae4a, type: 3}
   waspInst: {fileID: 9151680749256779900, guid: 312937de32f1a774381eef1a5b94229c,
     type: 3}
+  snakeInst: {fileID: 2285516267327439912, guid: 77b5d6050e2b07e44a12eaa33d2c0d16,
+    type: 3}
   villageHouse1: {fileID: 8256362182749955152, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
     type: 3}
   firepit: {fileID: 2552629363692037625, guid: 20a68e91d76cd744ea538fe5fd4155ed, type: 3}
