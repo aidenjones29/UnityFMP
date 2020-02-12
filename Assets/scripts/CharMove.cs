@@ -82,7 +82,6 @@ public class CharMove : MonoBehaviour
             if (Physics.Raycast(transform.position, Vector3.down, out hit))
             {
                 GlobalVariables.position = hit.collider.gameObject.name.Split(' ');
-                Debug.Log(hit.collider.gameObject.name);
             }
         }
 

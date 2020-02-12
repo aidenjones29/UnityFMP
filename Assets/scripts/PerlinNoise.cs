@@ -12,6 +12,7 @@ public class PerlinNoise : MonoBehaviour
     public GameObject character;
     public Texture2D sandTexture;
     public GameObject treeInstanciate;
+    public GameObject deadTreeInst;
     public GameObject cactusInstanciate;
     public GameObject[][] instanciated;
     public GameObject[][] treeInstanciated;
@@ -234,6 +235,12 @@ public class PerlinNoise : MonoBehaviour
                             treeInstanciated[(int)y2][(int)x2] = Instantiate(treeInstanciate, position, rotation);
                             treeInstanciated[y2][x2].SetActive(false);
                         }
+                        else if (blockType[(int)y2][(int)x2] == eBlocks.Dirt)
+                        {
+                            position.y -= 2;
+                            treeInstanciated[(int)y2][(int)x2] = Instantiate(deadTreeInst, position, rotation);
+                            treeInstanciated[y2][x2].SetActive(false);
+                        }
                     }
                     else if(randTree < 100)
                     {
@@ -288,26 +295,18 @@ public class PerlinNoise : MonoBehaviour
             currentChunk[0] = int.Parse(GlobalVariables.position[0]) / chunkSize;
             currentChunk[1] = int.Parse(GlobalVariables.position[1]) / chunkSize;
 
-            //if (lastChunk[0] > currentChunk[0])
-            //{
-            //    unrenderChunk(currentChunk[1], currentChunk[0] - (renderChunkSize / 2));
-            //}
-            //else if (lastChunk[0] < currentChunk[0])
-            //{
-            //    unrenderChunk(currentChunk[1], currentChunk[0] + (renderChunkSize / 2));
-            //}
-
-            //if (lastChunk[1] > currentChunk[1])
-            //{
-            //    unrenderChunk(currentChunk[1] - (renderChunkSize / 2), currentChunk[0]);
-            //}
-            //else if (lastChunk[1] < currentChunk[1])
-            //{
-            //    unrenderChunk(currentChunk[1] + (renderChunkSize / 2), currentChunk[0]);
-            //}
-
             if (lastChunk[0] != currentChunk[0] || lastChunk[1] != currentChunk[1])
             {
+                for (int yRend = (currentChunk[0] - (renderChunkSize / 2) - 1); yRend < (currentChunk[0] + (renderChunkSize / 2) + 1); yRend++)
+                {
+                    for (int xRend = (currentChunk[1] - (renderChunkSize / 2) - 1); xRend < (currentChunk[1] + (renderChunkSize / 2) + 1); xRend++)
+                    {
+                        if (xRend >= 0 && xRend < (pixRes / 10) && yRend >= 0 && yRend <= (pixRes / 10))
+                        {
+                            unrenderChunk(yRend, xRend);
+                        }
+                    }
+                }
 
                 for (int yRend = (currentChunk[0] - (renderChunkSize / 2)); yRend < (currentChunk[0] + (renderChunkSize / 2)); yRend++)
                 {
@@ -344,6 +343,7 @@ public class PerlinNoise : MonoBehaviour
 
     void unrenderChunk(int x, int y)
     {
+
         for (int yRend = 0; yRend < chunkSize; yRend++)
         {
             for (int xRend = 0; xRend < chunkSize; xRend++)
