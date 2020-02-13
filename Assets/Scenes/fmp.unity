@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99af6153d89117b47a15126bc3a3f751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pixRes: 500
+  pixRes: 800
   worldGroundInstanciate: {fileID: 7498657089959617885, guid: 155ab5d07f114ae47ab5afdd0ddccae8,
     type: 3}
   character: {fileID: 859583808}
