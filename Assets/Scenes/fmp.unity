@@ -1021,6 +1021,8 @@ MonoBehaviour:
   villageHouse1: {fileID: 8256362182749955152, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
     type: 3}
   firepit: {fileID: 2552629363692037625, guid: 20a68e91d76cd744ea538fe5fd4155ed, type: 3}
+  pedistalInst: {fileID: 5375528260336029570, guid: 040d8ddaaf209da4695344280bb3c479,
+    type: 3}
 --- !u!64 &1054886044
 MeshCollider:
   m_ObjectHideFlags: 0

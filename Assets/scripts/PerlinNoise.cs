@@ -26,6 +26,7 @@ public class PerlinNoise : MonoBehaviour
     public GameObject snakeInst;
     public GameObject villageHouse1;
     public GameObject firepit;
+    public GameObject pedistalInst;
 
     private GameObject[][] instanciated;
     private GameObject[][] treeInstanciated;
@@ -48,6 +49,7 @@ public class PerlinNoise : MonoBehaviour
     private int chunkSize = 20;
     private int[] lastChunk = new int[2];
     private int[] currentChunk = new int[2];
+    private bool[] pedistalSet = new bool[4];
     private int renderChunkSize = 6;
 
     void Start()
@@ -68,6 +70,20 @@ public class PerlinNoise : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    void Update()
+    {
+        if (done == false)
+        {
+            CalcNoise();
+            makeBiomes();
+            placeTrees();
+            PlaceBossPedistal();
+            done = true;
+        }
+
+        renderSquare();
     }
 
     void CalcNoise()
@@ -163,20 +179,7 @@ public class PerlinNoise : MonoBehaviour
 
         outputImage.material.mainTexture = noiseTex;
     }
-
-    void Update()
-    {
-        if (done == false)
-        {
-            CalcNoise();
-            makeBiomes();
-            placeTrees();
-            done = true;
-        }
-
-        renderSquare();
-    }
-
+    
     void makeBiomes()
     {
         int halfRes = pixRes / 2;
@@ -364,6 +367,30 @@ public class PerlinNoise : MonoBehaviour
                 if (treeInstanciated[y * chunkSize + yRend][x * chunkSize + xRend] && treeInstanciated[y * chunkSize + yRend][x * chunkSize + xRend].activeInHierarchy == true)
                 {
                     treeInstanciated[y * chunkSize + yRend][x * chunkSize + xRend].SetActive(false);
+                }
+            }
+        }
+    }
+
+    void PlaceBossPedistal()
+    {
+        int x; int y;
+
+        for(int i = 0; i < 4; i++)
+        {
+            while (pedistalSet[i] == false)
+            {
+                x = Random.Range(0, pixRes - 1); y = Random.Range(0, pixRes - 1);
+
+                if (instanciated[y][x])
+                {
+                    Vector3 blockPos = instanciated[y][x].transform.position;
+                    blockPos.y += 1;
+                    rotation = Quaternion.Euler(-90, 0, 0);
+                    Instantiate(pedistalInst, blockPos, rotation);
+                    rotation = Quaternion.Euler(0, 0, 0);
+                    character.transform.position = new Vector3(x * 1.5f, height + 10, (y * 1.5f) - 5);
+                    pedistalSet[i] = true;
                 }
             }
         }
