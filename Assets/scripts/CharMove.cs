@@ -6,6 +6,7 @@ public static class GlobalVariables
     public static string[] position = new string[2];
     public static int currentHP;
     public static int kills;
+    public static int coins;
 }
 
 public class CharMove : MonoBehaviour
@@ -39,6 +40,8 @@ public class CharMove : MonoBehaviour
     {
         blockrend = holdingBlock.GetComponent<Renderer>();
         GlobalVariables.currentHP = 100;
+        GlobalVariables.kills = 0;
+        GlobalVariables.coins = 10;
         PlayerController = GetComponent<CharacterController>();
         Cursor.visible = false;
         healthBar.UpdateBar(currHp, maxHp);
@@ -70,7 +73,7 @@ public class CharMove : MonoBehaviour
         rotateValue = new Vector3(x, y * -1, 0);
         transform.eulerAngles = transform.eulerAngles - rotateValue;
 
-        if (player.transform.position.y <= water.transform.position.y + 1.5f)
+        if (player.transform.position.y <= water.transform.position.y + 1.5f && player.transform.position.y >= -50.0f)
         {
             PlayerController.center = new Vector3(0.0f, 1.5f, 0.0f);
         }

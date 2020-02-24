@@ -13,6 +13,7 @@ public class snakeBehaviour : MonoBehaviour
     private bool followingPlayer = false;
     SkinnedMeshRenderer waspRend;
     private Animator anim;
+    private bool dead = false;
 
     private float attackTimerMax = 1.5f;
     private float CurrentAttackTimer = 1.0f;
@@ -37,6 +38,12 @@ public class snakeBehaviour : MonoBehaviour
         if (CurrentHP <= 0.0f)
         {
             anim.Play("Death");
+            if (dead == false)
+            {
+                GlobalVariables.kills += 1;
+                GlobalVariables.coins += 10;
+                dead = true;
+            }
             Destroy(gameObject, 1.0f);
         }
         else

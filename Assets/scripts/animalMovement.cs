@@ -15,6 +15,7 @@ public class animalMovement : MonoBehaviour
     private int CurrentHP = 100;
     private SkinnedMeshRenderer rend;
     private Quaternion currRot;
+    private bool dead = false;
 
     void Start()
     {
@@ -32,6 +33,12 @@ public class animalMovement : MonoBehaviour
         if (CurrentHP <= 0.0f)
         {
             anim.Play("Death");
+            if (dead == false)
+            {
+                GlobalVariables.kills += 1;
+                GlobalVariables.coins += 2;
+                dead = true;
+            }
             Destroy(gameObject, 1.5f);
         }
         else

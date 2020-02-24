@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class HPText : MonoBehaviour
 {
-    public Text textUI;
+    public Text HPUI;
+    public Text KillUI;
+    public Text CoinUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,8 @@ public class HPText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textUI.text = "HP: " + GlobalVariables.currentHP;
+        HPUI.text = "HP: " + GlobalVariables.currentHP;
+        KillUI.text = ""+GlobalVariables.kills;
+        CoinUI.text = "" + GlobalVariables.coins;
     }
 }
