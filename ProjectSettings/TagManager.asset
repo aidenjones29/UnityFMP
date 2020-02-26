@@ -7,6 +7,9 @@ TagManager:
   - Destructable
   - Mob
   - Friendly
+  - Chest
+  - Door
+  - WorldBlock
   layers:
   - Default
   - TransparentFX

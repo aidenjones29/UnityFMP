@@ -21,6 +21,7 @@ public class CharMove : MonoBehaviour
     public SimpleHealthBar healthBar;
     public GameObject[] PlayerHand;
     public Material[] holdingSkins;
+    public GameObject[] BossTeleport;
 
     private Renderer blockrend;
     private Vector3 moveDirection = Vector3.zero;
@@ -35,6 +36,7 @@ public class CharMove : MonoBehaviour
     private bool swinging = false;
     private Quaternion startRotSword;
     public int swordDamage = 25;
+    private Vector3 playerOldPos;
 
     void Start()
     {
@@ -45,7 +47,7 @@ public class CharMove : MonoBehaviour
         PlayerController = GetComponent<CharacterController>();
         Cursor.visible = false;
         healthBar.UpdateBar(currHp, maxHp);
-        startRotSword = armsSword.transform.rotation;
+        startRotSword = armsSword.transform.localRotation;
     }
 
     void Update()
@@ -85,6 +87,12 @@ public class CharMove : MonoBehaviour
             if (Physics.Raycast(transform.position, Vector3.down, out hit))
             {
                 GlobalVariables.position = hit.collider.gameObject.name.Split(' ');
+
+                if (hit.collider.gameObject.tag == "WorldBlock")
+                {
+                    playerOldPos = hit.collider.gameObject.transform.position;
+                    playerOldPos.y += 5.0f;
+                }
             }
         }
 
@@ -179,6 +187,39 @@ public class CharMove : MonoBehaviour
                 if(hit.collider.gameObject.tag == "Destructable")
                 {
                     Destroy(hit.collider.gameObject);
+                }
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit InteractHit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out InteractHit, 10.0f))
+            {
+                if (InteractHit.collider.gameObject.tag == "Chest")
+                {
+                    InteractHit.collider.gameObject.SendMessage("Open");
+                }
+                else if(InteractHit.collider.gameObject.name == "Boss0")
+                {
+                    gameObject.transform.position = BossTeleport[0].transform.position;
+                }
+                else if (InteractHit.collider.gameObject.name == "Boss1")
+                {
+                    gameObject.transform.position = BossTeleport[1].transform.position;
+                }
+                else if (InteractHit.collider.gameObject.name == "Boss2")
+                {
+                    gameObject.transform.position = BossTeleport[2].transform.position;
+                }
+                else if (InteractHit.collider.gameObject.name == "Boss3")
+                {
+                    gameObject.transform.position = BossTeleport[3].transform.position;
+                }
+                else if (InteractHit.collider.gameObject.tag == "Door")
+                {
+                    gameObject.transform.position = playerOldPos;
                 }
             }
         }

@@ -30,6 +30,7 @@ public class PerlinNoise : MonoBehaviour
 
     private GameObject[][] instanciated;
     private GameObject[][] treeInstanciated;
+    private GameObject[] pedistalInstanciated;
     private bool done = false;
     private bool playerSet = false;
     private float xOrg;
@@ -47,10 +48,11 @@ public class PerlinNoise : MonoBehaviour
     private Renderer rend;
 
     private int chunkSize = 20;
+    private int renderChunkSize = 6;
+    private int pedistalAmount = 4;
     private int[] lastChunk = new int[2];
     private int[] currentChunk = new int[2];
     private bool[] pedistalSet = new bool[4];
-    private int renderChunkSize = 6;
 
     void Start()
     {
@@ -61,6 +63,7 @@ public class PerlinNoise : MonoBehaviour
 
         instanciated = new GameObject[pixRes][];
         treeInstanciated = new GameObject[pixRes][];
+        pedistalInstanciated = new GameObject[pedistalAmount];
         blockType = new eBlocks[pixRes][];
         rend = GetComponent<Renderer>();
 
@@ -137,11 +140,11 @@ public class PerlinNoise : MonoBehaviour
                         }
                     }
 
-                    if(x >= pixRes /2 && y >= pixRes /2 && playerSet == false && instanciated[(int)y][(int)x])
-                    {
-                        character.transform.position = new Vector3(x * 1.5f, height + 10, (y * 1.5f) - 5);
-                        playerSet = true;
-                    }
+                   // if(x >= pixRes /2 && y >= pixRes /2 && playerSet == false && instanciated[(int)y][(int)x])
+                   // {
+                   //     character.transform.position = new Vector3(x * 1.5f, height + 10, (y * 1.5f) - 5);
+                   //     playerSet = true;
+                   // }
 
                     if ((x == xVillage && y == yVillage) && playerSet == false)
                     {
@@ -376,7 +379,7 @@ public class PerlinNoise : MonoBehaviour
     {
         int x; int y;
 
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < pedistalAmount; i++)
         {
             while (pedistalSet[i] == false)
             {
@@ -387,7 +390,8 @@ public class PerlinNoise : MonoBehaviour
                     Vector3 blockPos = instanciated[y][x].transform.position;
                     blockPos.y += 1;
                     rotation = Quaternion.Euler(-90, 0, 0);
-                    Instantiate(pedistalInst, blockPos, rotation);
+                    pedistalInstanciated[i] = Instantiate(pedistalInst, blockPos, rotation);
+                    pedistalInstanciated[i].name = "Boss" + i;
                     rotation = Quaternion.Euler(0, 0, 0);
                     character.transform.position = new Vector3(x * 1.5f, height + 10, (y * 1.5f) - 5);
                     pedistalSet[i] = true;
