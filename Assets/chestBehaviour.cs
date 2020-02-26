@@ -28,7 +28,7 @@ public class chestBehaviour : MonoBehaviour
     {
         if(opened == false)
         {
-            GlobalVariables.coins += 50;
+            GlobalVariables.coins += int.Parse(gameObject.name);
             Instantiate(chestModel, chestPosition, chestRotation);
             Destroy(gameObject);
         }

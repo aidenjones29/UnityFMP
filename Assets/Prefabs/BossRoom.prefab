@@ -5747,7 +5747,7 @@ PrefabInstance:
     - target: {fileID: 1350453606467708614, guid: 211e0099ae06cc14f9978199cb5c6621,
         type: 3}
       propertyPath: m_Name
-      value: Chest
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2658988270627706069, guid: 211e0099ae06cc14f9978199cb5c6621,
         type: 3}

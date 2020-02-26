@@ -842,7 +842,7 @@ Transform:
   - {fileID: 695699064}
   - {fileID: 158451775}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!143 &859583814
 CharacterController:
@@ -894,7 +894,7 @@ Transform:
   - {fileID: 1355400667}
   - {fileID: 98556944}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &976503848
 PrefabInstance:
@@ -1015,10 +1015,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1168168565}
-  - {fileID: 1054886047}
   - {fileID: 746451952}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027768220 stripped
 GameObject:
@@ -1181,6 +1180,8 @@ MonoBehaviour:
   firepit: {fileID: 2552629363692037625, guid: 20a68e91d76cd744ea538fe5fd4155ed, type: 3}
   pedistalInst: {fileID: 5375528260336029570, guid: 040d8ddaaf209da4695344280bb3c479,
     type: 3}
+  chestInst: {fileID: 1350453606467708614, guid: 211e0099ae06cc14f9978199cb5c6621,
+    type: 3}
 --- !u!64 &1054886044
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1250,11 +1251,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054886042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.698851, y: -6.2164855, z: 23.025671}
+  m_LocalPosition: {x: 10.42, y: 2.9, z: 8.86}
   m_LocalScale: {x: 4.5547857, y: 4.5547857, z: 4.5547857}
   m_Children: []
-  m_Father: {fileID: 990257042}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1081272290
 GameObject:
@@ -2422,7 +2423,7 @@ RectTransform:
   - {fileID: 1193373519}
   - {fileID: 1812010813}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2694,7 +2695,7 @@ Transform:
   - {fileID: 976503849}
   - {fileID: 1407596254}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1454157032103689760 stripped
 Transform:
@@ -2842,6 +2843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925902508997883793, guid: 34e71cd9e58225049a7515b79e96e78b,
+        type: 3}
+      propertyPath: m_Name
+      value: Decorative_Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34e71cd9e58225049a7515b79e96e78b, type: 3}

@@ -27,6 +27,7 @@ public class PerlinNoise : MonoBehaviour
     public GameObject villageHouse1;
     public GameObject firepit;
     public GameObject pedistalInst;
+    public GameObject chestInst;
 
     private GameObject[][] instanciated;
     private GameObject[][] treeInstanciated;
@@ -53,6 +54,7 @@ public class PerlinNoise : MonoBehaviour
     private int[] lastChunk = new int[2];
     private int[] currentChunk = new int[2];
     private bool[] pedistalSet = new bool[4];
+    private GameObject chest;
 
     void Start()
     {
@@ -295,6 +297,12 @@ public class PerlinNoise : MonoBehaviour
                             position.y -= 2.0f;
                             Instantiate(snakeInst, position, rotation);
                         }
+                    }
+                    else if (randTree == 991 && randMob <= 100)
+                    {
+                        position.y -= 2.0f;
+                        chest = Instantiate(chestInst, position, rotation);
+                        chest.name = "20";
                     }
                 }
             }
