@@ -14,7 +14,6 @@ public class CharMove : MonoBehaviour
     CharacterController PlayerController;
     public GameObject player;
     public GameObject water;
-    public float movementSpeed = 10.0f;
     public GameObject holdingBlock;
     public GameObject armsBlock;
     public GameObject armsSword;
@@ -22,20 +21,24 @@ public class CharMove : MonoBehaviour
     public GameObject[] PlayerHand;
     public Material[] holdingSkins;
     public GameObject[] BossTeleport;
-
+    public GameObject swordUpgrade;
+    public GameObject swordOrigional;
     private Renderer blockrend;
-    private Vector3 moveDirection = Vector3.zero;
+
+    public float movementSpeed = 10.0f;
     private float x;
     private float y;
-    private Vector3 rotateValue;
+    private float swingTime = 0.15f;
     private int skin = 0;
     private int maxHp = 100;
     private int currHp;
+    public  int swordDamage = 25;
     private bool holdingSword = true;
-    private float swingTime = 0.15f;
+    private bool SwordPurchased = false;
     private bool swinging = false;
     private Quaternion startRotSword;
-    public int swordDamage = 25;
+    private Vector3 moveDirection = Vector3.zero;
+    private Vector3 rotateValue;
     private Vector3 playerOldPos;
 
     void Start()
@@ -43,7 +46,7 @@ public class CharMove : MonoBehaviour
         blockrend = holdingBlock.GetComponent<Renderer>();
         GlobalVariables.currentHP = 100;
         GlobalVariables.kills = 0;
-        GlobalVariables.coins = 10;
+        GlobalVariables.coins = 0;
         PlayerController = GetComponent<CharacterController>();
         Cursor.visible = false;
         healthBar.UpdateBar(currHp, maxHp);
@@ -220,6 +223,15 @@ public class CharMove : MonoBehaviour
                 else if (InteractHit.collider.gameObject.tag == "Door")
                 {
                     gameObject.transform.position = playerOldPos;
+                }
+                else if(InteractHit.collider.gameObject.tag == "Villager")
+                {
+                    if(SwordPurchased == false && GlobalVariables.coins >= 150)
+                    {
+                        swordOrigional.SetActive(false); swordUpgrade.SetActive(true);
+                        swordDamage = 50; GlobalVariables.coins -= 150;
+                        SwordPurchased = true;
+                    }
                 }
             }
         }

@@ -1163,9 +1163,10 @@ GameObject:
   - component: {fileID: 5054161860510080539}
   - component: {fileID: 8944566188821366445}
   - component: {fileID: 3726313162700510624}
+  - component: {fileID: 3941581089267997668}
   m_Layer: 0
   m_Name: Dragon
-  m_TagString: Untagged
+  m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1225,6 +1226,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.72, z: 0}
+--- !u!114 &3941581089267997668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104408639408778248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfc24df0c57cee4a8b6b3fe04f3c47d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8404268909528690886
 GameObject:
   m_ObjectHideFlags: 0

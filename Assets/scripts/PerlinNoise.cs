@@ -49,7 +49,7 @@ public class PerlinNoise : MonoBehaviour
     private Renderer rend;
 
     private int chunkSize = 20;
-    private int renderChunkSize = 6;
+    private int renderChunkSize = 4;
     private int pedistalAmount = 4;
     private int[] lastChunk = new int[2];
     private int[] currentChunk = new int[2];
@@ -95,8 +95,8 @@ public class PerlinNoise : MonoBehaviour
     {
         float y = 0.0f;
 
-        int xVillage = Random.Range(50, noiseTex.width);
-        int yVillage = Random.Range(50, noiseTex.height);
+        int xVillage = Random.Range(20, noiseTex.width);
+        int yVillage = Random.Range(20, noiseTex.height);
 
         while (y < noiseTex.height)
         {
@@ -115,10 +115,10 @@ public class PerlinNoise : MonoBehaviour
                 pix[(int)y * noiseTex.width + (int)x] = new Color(sample, sample, sample);
                 height = (int)(sample * blockScale) + 3;
                 blockType[(int)y][(int)x] = eBlocks.Water;
+                Vector3 position = new Vector3(x * 1.5f, height - (pixRes / 100), y * 1.5f);
 
                 if (height > 7 + pixRes / 100)
                 {
-                    Vector3 position = new Vector3(x * 1.5f, height - (pixRes / 100), y * 1.5f);
                     instanciated[(int)y][(int)x] = Instantiate(worldGroundInstanciate, position, rotation);
                     instanciated[(int)y][(int)x].name = (int)x + " " + (int)y;
                     instanciated[(int)y][(int)x].GetComponent<Renderer>().enabled = false;
@@ -142,39 +142,41 @@ public class PerlinNoise : MonoBehaviour
                         }
                     }
 
-                   // if(x >= pixRes /2 && y >= pixRes /2 && playerSet == false && instanciated[(int)y][(int)x])
-                   // {
-                   //     character.transform.position = new Vector3(x * 1.5f, height + 10, (y * 1.5f) - 5);
-                   //     playerSet = true;
-                   // }
+                   if(x >= pixRes /2 && y >= pixRes /2 && playerSet == false && instanciated[(int)y][(int)x])
+                   {
+                       character.transform.position = new Vector3(x * 1.5f, height + 10, (y * 1.5f) - 5);
+                       playerSet = true;
+                   }
 
-                    if ((x == xVillage && y == yVillage) && playerSet == false)
-                    {
-                        position.y += 1;
-                        Instantiate(villageHouse1, position, rotation);
-                    }
-                    else if (x == xVillage - 5 && y == yVillage + 5)
-                    {
-                        position.y += 1;
-                        rotation = Quaternion.Euler(0, 90, 0);
-                        Instantiate(villageHouse1, position, rotation);
-                        rotation = Quaternion.Euler(0, 0, 0);
-                    }
-                    else if (x == xVillage + 10 && y == yVillage + 5)
-                    {
-                        position.y += 1;
-                        rotation = Quaternion.Euler(0, 270, 0);
-                        Instantiate(villageHouse1, position, rotation);
-                        rotation = Quaternion.Euler(0, 0, 0);
-                    }
-                    else if (x == xVillage && y == yVillage + 8)
-                    {
-                        position.y += 1;
-                        rotation = Quaternion.Euler(0, 270, 0);
-                        Instantiate(firepit, position, rotation);
-                        rotation = Quaternion.Euler(0, 0, 0);
-                    }
                 }
+
+                if (x == xVillage && y == yVillage)
+                {
+                    position.y += 1;
+                    Instantiate(villageHouse1, position, rotation);
+                }
+                else if (x == xVillage - 5 && y == yVillage + 5)
+                {
+                    position.y += 1;
+                    rotation = Quaternion.Euler(0, 90, 0);
+                    Instantiate(villageHouse1, position, rotation);
+                    rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else if (x == xVillage + 10 && y == yVillage + 5)
+                {
+                    position.y += 1;
+                    rotation = Quaternion.Euler(0, 270, 0);
+                    Instantiate(villageHouse1, position, rotation);
+                    rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else if (x == xVillage && y == yVillage + 8)
+                {
+                    position.y += 1;
+                    rotation = Quaternion.Euler(0, 270, 0);
+                    Instantiate(firepit, position, rotation);
+                    rotation = Quaternion.Euler(0, 0, 0);
+                }
+
                 x++;
             }
             y++;
@@ -401,7 +403,6 @@ public class PerlinNoise : MonoBehaviour
                     pedistalInstanciated[i] = Instantiate(pedistalInst, blockPos, rotation);
                     pedistalInstanciated[i].name = "Boss" + i;
                     rotation = Quaternion.Euler(0, 0, 0);
-                    character.transform.position = new Vector3(x * 1.5f, height + 10, (y * 1.5f) - 5);
                     pedistalSet[i] = true;
                 }
             }
