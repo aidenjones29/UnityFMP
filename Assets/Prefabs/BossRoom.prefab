@@ -287,6 +287,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3998562247849328486}
+  - component: {fileID: 3189973320984635072}
+  - component: {fileID: 7694232619482877731}
+  - component: {fileID: 4912491271868790722}
+  - component: {fileID: 1983907566483686070}
   m_Layer: 0
   m_Name: BossRoom
   m_TagString: Untagged
@@ -313,6 +317,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3189973320984635072
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998562247849328473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 34.870148, y: 9.52298, z: 1}
+  m_Center: {x: -4.82, y: 2.72, z: 4.02}
+--- !u!65 &7694232619482877731
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998562247849328473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 34.870148, y: 9.52298, z: 1}
+  m_Center: {x: -4.84, y: 2.72, z: 26.33}
+--- !u!65 &4912491271868790722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998562247849328473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.72, y: 14.3, z: 23.76}
+  m_Center: {x: -19.58, y: 0, z: 15.5}
+--- !u!65 &1983907566483686070
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998562247849328473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.72, y: 14.3, z: 23.76}
+  m_Center: {x: 11.8, y: 0, z: 15.5}
 --- !u!1 &4332750613485468094
 GameObject:
   m_ObjectHideFlags: 0

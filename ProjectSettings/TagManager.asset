@@ -11,6 +11,7 @@ TagManager:
   - Door
   - WorldBlock
   - Villager
+  - VillagerHP
   layers:
   - Default
   - TransparentFX

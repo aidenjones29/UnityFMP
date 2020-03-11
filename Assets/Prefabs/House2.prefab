@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1496107252805298387
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2249927704073357850, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_TagString
+      value: VillagerHP
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660392016379381917, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677590566473434370, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517368343675605456, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256362182749955152, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_Name
+      value: House2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256362182749955152, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158174766173357977, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158174766173357977, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158174766173357977, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158174766173357977, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158174766173357977, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158174766173357977, guid: 16d63894466fcc34c9ad8242ab9b6e0a,
+        type: 3}
+      propertyPath: m_text
+      value: 50 Coins - Healing
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 16d63894466fcc34c9ad8242ab9b6e0a, type: 3}

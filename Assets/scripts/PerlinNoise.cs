@@ -24,7 +24,9 @@ public class PerlinNoise : MonoBehaviour
     public GameObject BatInst;
     public GameObject waspInst;
     public GameObject snakeInst;
-    public GameObject villageHouse1;
+    public GameObject VillageHouse1;
+    public GameObject VillageHouse2;
+    public GameObject VillageHouse3;
     public GameObject firepit;
     public GameObject pedistalInst;
     public GameObject chestInst;
@@ -48,8 +50,8 @@ public class PerlinNoise : MonoBehaviour
     private Color[] pix;
     private Renderer rend;
 
-    private int chunkSize = 20;
-    private int renderChunkSize = 4;
+    public int chunkSize = 20;
+    public int renderChunkSize = 4;
     private int pedistalAmount = 4;
     private int[] lastChunk = new int[2];
     private int[] currentChunk = new int[2];
@@ -60,7 +62,7 @@ public class PerlinNoise : MonoBehaviour
     {
         xOrg = Random.Range(0, 100);
         yOrg = Random.Range(0, 100);
-        scale = Random.Range(5, 15);
+        scale = Random.Range(10, 15);
         blockScale = Random.Range(25, 30);
 
         instanciated = new GameObject[pixRes][];
@@ -153,20 +155,20 @@ public class PerlinNoise : MonoBehaviour
                 if (x == xVillage && y == yVillage)
                 {
                     position.y += 1;
-                    Instantiate(villageHouse1, position, rotation);
+                    Instantiate(VillageHouse1, position, rotation);
                 }
                 else if (x == xVillage - 5 && y == yVillage + 5)
                 {
                     position.y += 1;
                     rotation = Quaternion.Euler(0, 90, 0);
-                    Instantiate(villageHouse1, position, rotation);
+                    Instantiate(VillageHouse2, position, rotation);
                     rotation = Quaternion.Euler(0, 0, 0);
                 }
                 else if (x == xVillage + 10 && y == yVillage + 5)
                 {
                     position.y += 1;
                     rotation = Quaternion.Euler(0, 270, 0);
-                    Instantiate(villageHouse1, position, rotation);
+                    Instantiate(VillageHouse3, position, rotation);
                     rotation = Quaternion.Euler(0, 0, 0);
                 }
                 else if (x == xVillage && y == yVillage + 8)

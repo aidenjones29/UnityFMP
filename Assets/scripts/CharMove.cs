@@ -46,7 +46,7 @@ public class CharMove : MonoBehaviour
         blockrend = holdingBlock.GetComponent<Renderer>();
         GlobalVariables.currentHP = 100;
         GlobalVariables.kills = 0;
-        GlobalVariables.coins = 0;
+        GlobalVariables.coins = 50;
         PlayerController = GetComponent<CharacterController>();
         Cursor.visible = false;
         healthBar.UpdateBar(currHp, maxHp);
@@ -231,6 +231,13 @@ public class CharMove : MonoBehaviour
                         swordOrigional.SetActive(false); swordUpgrade.SetActive(true);
                         swordDamage = 50; GlobalVariables.coins -= 150;
                         SwordPurchased = true;
+                    }
+                }
+                else if (InteractHit.collider.gameObject.tag == "VillagerHP")
+                {
+                    if (GlobalVariables.currentHP < 100 && GlobalVariables.coins >= 50)
+                    {
+                        GlobalVariables.currentHP = 100; GlobalVariables.coins -= 50;
                     }
                 }
             }
