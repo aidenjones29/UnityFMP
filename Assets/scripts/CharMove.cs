@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public static class GlobalVariables
@@ -44,9 +45,9 @@ public class CharMove : MonoBehaviour
     void Start()
     {
         blockrend = holdingBlock.GetComponent<Renderer>();
-        GlobalVariables.currentHP = 100;
+        GlobalVariables.currentHP = 10;
         GlobalVariables.kills = 0;
-        GlobalVariables.coins = 50;
+        GlobalVariables.coins = 0;
         PlayerController = GetComponent<CharacterController>();
         Cursor.visible = false;
         healthBar.UpdateBar(currHp, maxHp);
@@ -58,6 +59,11 @@ public class CharMove : MonoBehaviour
         currHp = GlobalVariables.currentHP;
         healthBar.UpdateBar(currHp, maxHp);
 
+        if(GlobalVariables.currentHP <= 0)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
         if (PlayerController.isGrounded)
         {
             moveDirection = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")));
@@ -67,6 +73,11 @@ public class CharMove : MonoBehaviour
             {
                 moveDirection.y += 10.0f;
             }
+        }
+
+        if (Input.GetKey("escape"))
+        {
+            SceneManager.LoadScene("MainMenu");
         }
 
         //Gravity
