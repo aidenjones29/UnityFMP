@@ -8,13 +8,21 @@ public class control : MonoBehaviour
     public GameObject pleaseWait;
     public GameObject pause;
     public GameObject play;
+    public GameObject Options;
+
     public void NextScene()
     {
         pleaseWait.SetActive(true);
         pause.SetActive(false);
         play.SetActive(false);
+        Options.SetActive(false);
 
         SceneManager.LoadScene("fmp");
+    }
+
+    public void optionsScene()
+    {
+        SceneManager.LoadScene("Options");
     }
 
     public void CloseGame()

@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestModel: {fileID: 530646014597493757, guid: 53c796c4f27bd1a4aa410e206d4aae8f,
     type: 3}
+  top: {fileID: 3382227729726134495}
+  bottom: {fileID: 7076361354700429210}
 --- !u!65 &7834235013854804988
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -87,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864968701368076182}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 2658988270627706069}

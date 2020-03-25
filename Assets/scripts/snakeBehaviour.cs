@@ -50,13 +50,19 @@ public class snakeBehaviour : MonoBehaviour
         {
             float dist = Vector3.Distance(transform.position, player.transform.position);
 
-            if (dist <= 60)
+            if (dist <= int.Parse(PlayerPrefs.GetString("Render")) * 15)
             {
-                waspRend.enabled = true;
+                if(waspRend.enabled == false)
+                {
+                    waspRend.enabled = true;
+                }
             }
             else
             {
-                waspRend.enabled = false;
+                if (waspRend.enabled == true)
+                {
+                    waspRend.enabled = false;
+                }
             }
 
             if (dist <= 15)

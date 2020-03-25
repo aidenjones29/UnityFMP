@@ -43,13 +43,19 @@ public class animalMovement : MonoBehaviour
         }
         else
         {
-            if (dist <= 60)
+            if (dist <= int.Parse(PlayerPrefs.GetString("Render")) * 15)
             {
-                rend.enabled = true;
+                if (rend.enabled == false)
+                {
+                    rend.enabled = true;
+                }
             }
             else
             {
-                rend.enabled = false;
+                if (rend.enabled == true)
+                {
+                    rend.enabled = false;
+                }
             }
 
             if (dist <= 5)

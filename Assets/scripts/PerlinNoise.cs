@@ -60,6 +60,12 @@ public class PerlinNoise : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.HasKey("Render"))
+        {
+            renderChunkSize = int.Parse(PlayerPrefs.GetString("Render"));
+        }
+        else { PlayerPrefs.SetString("Render", renderChunkSize.ToString()); }
+
         xOrg = Random.Range(0, 100);
         yOrg = Random.Range(0, 100);
         scale = Random.Range(10, 15);
