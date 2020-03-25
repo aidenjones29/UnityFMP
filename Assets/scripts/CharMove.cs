@@ -25,6 +25,10 @@ public class CharMove : MonoBehaviour
     public GameObject swordUpgrade;
     public GameObject swordOrigional;
     private Renderer blockrend;
+    public AudioSource AudioManager;
+    public AudioClip GoldSound;
+    public AudioClip SwingSound;
+    public AudioClip HitSound;
 
     public float movementSpeed = 10.0f;
     private float x;
@@ -45,7 +49,7 @@ public class CharMove : MonoBehaviour
     void Start()
     {
         blockrend = holdingBlock.GetComponent<Renderer>();
-        GlobalVariables.currentHP = 10;
+        GlobalVariables.currentHP = 100;
         GlobalVariables.kills = 0;
         GlobalVariables.coins = 0;
         PlayerController = GetComponent<CharacterController>();
@@ -56,6 +60,12 @@ public class CharMove : MonoBehaviour
 
     void Update()
     {
+        if(GlobalVariables.currentHP != currHp)
+        {
+            AudioManager.clip = HitSound;
+            AudioManager.Play();
+        }
+
         currHp = GlobalVariables.currentHP;
         healthBar.UpdateBar(currHp, maxHp);
 
@@ -179,6 +189,9 @@ public class CharMove : MonoBehaviour
                 armsSword.transform.localRotation = startRotSword;
                 armsSword.transform.localPosition = new Vector3(0.8f, 0.9f, 1.0f);
 
+                AudioManager.clip = SwingSound;
+                AudioManager.Play();
+
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit, 10.0f))
@@ -214,6 +227,8 @@ public class CharMove : MonoBehaviour
                 if (InteractHit.collider.gameObject.tag == "Chest")
                 {
                     InteractHit.collider.gameObject.SendMessage("Open");
+                    AudioManager.clip = GoldSound;
+                    AudioManager.Play();
                 }
                 else if(InteractHit.collider.gameObject.name == "Boss0")
                 {
