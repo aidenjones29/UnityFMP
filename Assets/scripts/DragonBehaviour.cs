@@ -23,7 +23,7 @@ public class DragonBehaviour : MonoBehaviour
 
     void Start()
     {
-        CurrentHP = 120;
+        CurrentHP = 150;
         dragRend = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
         player = GameObject.Find("Player");
         animalController = GetComponent<CharacterController>();
